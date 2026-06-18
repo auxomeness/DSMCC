@@ -2,7 +2,7 @@ import multer from "multer";
 import path from "node:path";
 import { AppError } from "../utils/appError";
 
-const allowedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
+const allowedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp", ".HEIC"]);
 
 const storage = multer.diskStorage({
   destination: "uploads",
