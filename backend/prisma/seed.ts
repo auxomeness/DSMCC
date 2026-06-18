@@ -1,7 +1,13 @@
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient, Role, UserStatus } from "@prisma/client";
 import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+import { resolve } from "node:path";
 
-const prisma = new PrismaClient();
+dotenv.config({ path: resolve(process.cwd(), "backend/.env") });
+
+const adapter = new PrismaPg({ connectionString: `${process.env.DATABASE_URL}` });
+const prisma = new PrismaClient({ adapter });
 
 const defaultPassword = "Password123!";
 

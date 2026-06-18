@@ -1,7 +1,9 @@
 import { AppointmentStatus, Role } from "@prisma/client";
 import { prisma } from "../../config/prisma";
+import { notificationEventService } from "../../services/notification-event.service";
 import { getStaffProfileForUser } from "../concerns/concern-access.service";
 import { AppError } from "../../utils/appError";
+import { logger } from "../../utils/logger";
 import { appointmentAvailabilityService } from "./appointment-availability.service";
 import { appointmentSlotService } from "./appointment-slot.service";
 import type {
@@ -272,8 +274,14 @@ export class AppointmentService {
     };
   }
 
-  private async onAppointmentChange(_appointmentId: string, _event: string) {
-    // Structural hook only. Concern integration and notification delivery belong to later phases.
+  private onAppointmentChange(appointmentId: string, event: string) {
+    const status = event as AppointmentStatus;
+
+    setTimeout(() => {
+      void notificationEventService.emitAppointmentEvent(appointmentId, status).catch((error) => {
+        logger.error(error);
+      });
+    }, 0);
   }
 }
 

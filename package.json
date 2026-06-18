@@ -8,10 +8,10 @@
     "dev:frontend": "npm --prefix frontend run dev",
     "build:backend": "npm --prefix backend run build",
     "build:frontend": "npm --prefix frontend run build",
-    "prisma:generate": "npm --prefix backend run prisma:generate",
-    "prisma:validate": "npm --prefix backend run prisma:validate",
-    "prisma:migrate": "npm --prefix backend run prisma:migrate",
-    "prisma:seed": "npm --prefix backend run prisma:seed"
+    "prisma:generate": "prisma generate",
+    "prisma:validate": "prisma validate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "prisma db seed"
   },
   "workspaces": [
     "backend",

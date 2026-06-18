@@ -55,3 +55,52 @@ export const requireOfficeScope = async (req: Request, _res: Response, next: Nex
     next(error);
   }
 };
+
+export const requireOfficeHead = async (req: Request, _res: Response, next: NextFunction) => {
+  try {
+    if (!req.user) {
+      throw new AppError("Authentication is required.", 401);
+    }
+
+    if (req.user.role !== Role.STAFF) {
+      throw new AppError("Only office heads can access this resource.", 403);
+    }
+
+    const staffProfile = await getStaffProfileForUser(req.user.id);
+
+    if (!staffProfile?.isOfficeHead) {
+      throw new AppError("Only office heads can access this resource.", 403);
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const requireAdminOrOfficeHead = async (req: Request, _res: Response, next: NextFunction) => {
+  try {
+    if (!req.user) {
+      throw new AppError("Authentication is required.", 401);
+    }
+
+    if (req.user.role === Role.ADMIN) {
+      next();
+      return;
+    }
+
+    if (req.user.role !== Role.STAFF) {
+      throw new AppError("Only admins or office heads can access this resource.", 403);
+    }
+
+    const staffProfile = await getStaffProfileForUser(req.user.id);
+
+    if (!staffProfile?.isOfficeHead) {
+      throw new AppError("Only admins or office heads can access this resource.", 403);
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+};

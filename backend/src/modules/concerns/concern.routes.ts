@@ -11,12 +11,14 @@ import {
   getAllowedTransitions,
   getConcernById,
   getConcernHistory,
+  getConcernVoteCount,
   listConcerns,
   reassignConcern,
   rejectConcern,
   reopenConcern,
   resolveConcern,
-  startConcern
+  startConcern,
+  toggleConcernVote
 } from "./concern.controller";
 import {
   assignConcernSchema,
@@ -36,6 +38,8 @@ concernRoutes.get("/", validate(listConcernsSchema), listConcerns);
 concernRoutes.get("/:id", validate(concernIdSchema), getConcernById);
 concernRoutes.get("/:id/history", validate(concernIdSchema), getConcernHistory);
 concernRoutes.get("/:id/allowed-transitions", validate(concernIdSchema), getAllowedTransitions);
+concernRoutes.post("/:id/vote", requireRole([Role.TENANT]), validate(concernIdSchema), toggleConcernVote);
+concernRoutes.get("/:id/votes", validate(concernIdSchema), getConcernVoteCount);
 concernRoutes.patch("/:id/accept", validate(optionalRemarksSchema), acceptConcern);
 concernRoutes.patch("/:id/reject", validate(requiredRemarksSchema), rejectConcern);
 concernRoutes.patch("/:id/assign", validate(assignConcernSchema), assignConcern);

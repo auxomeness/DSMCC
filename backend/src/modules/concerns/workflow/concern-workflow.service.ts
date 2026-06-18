@@ -1,6 +1,8 @@
 import { ConcernStatus, Prisma } from "@prisma/client";
 import { prisma } from "../../../config/prisma";
+import { notificationEventService } from "../../../services/notification-event.service";
 import { AppError } from "../../../utils/appError";
+import { logger } from "../../../utils/logger";
 import { getValidNextStatuses } from "./concern-transition.map";
 import { validateTransition } from "./concern-validator";
 import { assertActorCanTransition, assertOfficeHeadActor, type WorkflowActor } from "./concern-actions.policy";
@@ -192,8 +194,12 @@ export class ConcernWorkflowService {
     }
   }
 
-  private async onStatusChange(_concernId: string, _oldStatus: ConcernStatus, _newStatus: ConcernStatus) {
-    // Structural hook only. Notification delivery belongs to the notification phase.
+  private onStatusChange(concernId: string, oldStatus: ConcernStatus, newStatus: ConcernStatus) {
+    setTimeout(() => {
+      void notificationEventService.emitConcernStatusChange(concernId, oldStatus, newStatus).catch((error) => {
+        logger.error(error);
+      });
+    }, 0);
   }
 }
 

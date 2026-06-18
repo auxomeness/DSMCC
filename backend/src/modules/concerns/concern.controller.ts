@@ -1,6 +1,7 @@
 import type { RequestHandler } from "express";
 import { successResponse } from "../../utils/response";
 import { concernService } from "./concern.service";
+import { concernVoteService } from "./concern-vote.service";
 
 export const createConcern: RequestHandler = async (req, res, next) => {
   try {
@@ -114,6 +115,24 @@ export const reopenConcern: RequestHandler = async (req, res, next) => {
   try {
     const concern = await concernService.reopenConcern(req.user!, req.params.id, req.body);
     res.status(200).json(successResponse("Concern reopened successfully", { concern }));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const toggleConcernVote: RequestHandler = async (req, res, next) => {
+  try {
+    const result = await concernVoteService.toggleVote(req.user!, req.params.id);
+    res.status(200).json(successResponse("Concern vote updated successfully", result));
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getConcernVoteCount: RequestHandler = async (req, res, next) => {
+  try {
+    const voteCount = await concernVoteService.getVoteCount(req.params.id);
+    res.status(200).json(successResponse("Concern vote count retrieved successfully", { voteCount }));
   } catch (error) {
     next(error);
   }
