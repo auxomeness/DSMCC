@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 
 import { useAuth } from '@/hooks/useAuth'
 import { routeConfig } from '@/routes/routeConfig'
@@ -9,12 +9,7 @@ type RoleRouteProps = {
 }
 
 export function RoleRoute({ allowedRoles }: RoleRouteProps) {
-  const location = useLocation()
-  const { accessToken, user } = useAuth()
-
-  if (!accessToken) {
-    return <Navigate to={routeConfig.login} replace state={{ from: location }} />
-  }
+  const { user } = useAuth()
 
   if (!user || !allowedRoles.includes(user.role)) {
     return <Navigate to={routeConfig.unauthorized} replace />
