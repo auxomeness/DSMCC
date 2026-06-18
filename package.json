@@ -1,51 +1,22 @@
 {
-  "name": "deca-backend",
+  "name": "deca-sentrio",
   "version": "0.1.0",
-  "description": "Backend foundation for the DECA Sentrio E-Concern and Service Request Management System.",
-  "main": "dist/server.js",
+  "private": true,
+  "description": "Monorepo for the DECA Sentrio backend and frontend applications.",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
-    "build": "tsc",
-    "start": "node dist/server.js",
-    "prisma:generate": "prisma generate",
-    "prisma:validate": "prisma validate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:seed": "prisma db seed"
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:backend": "npm --prefix backend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "prisma:generate": "npm --prefix backend run prisma:generate",
+    "prisma:validate": "npm --prefix backend run prisma:validate",
+    "prisma:migrate": "npm --prefix backend run prisma:migrate",
+    "prisma:seed": "npm --prefix backend run prisma:seed"
   },
-  "keywords": [
-    "express",
-    "typescript",
-    "prisma",
-    "postgresql"
+  "workspaces": [
+    "backend",
+    "frontend"
   ],
   "author": "Karl Austin Pavia",
-  "license": "UNLICENSED",
-  "dependencies": {
-    "@prisma/client": "^5.22.0",
-    "bcrypt": "^5.1.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "express-rate-limit": "^7.4.1",
-    "helmet": "^8.0.0",
-    "jsonwebtoken": "^9.0.2",
-    "multer": "^1.4.5-lts.1",
-    "nodemailer": "^6.9.16",
-    "zod": "^3.24.1"
-  },
-  "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "@types/jsonwebtoken": "^9.0.7",
-    "@types/multer": "^1.4.12",
-    "@types/node": "^22.10.2",
-    "@types/nodemailer": "^6.4.17",
-    "prisma": "^5.22.0",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
-  }
+  "license": "UNLICENSED"
 }

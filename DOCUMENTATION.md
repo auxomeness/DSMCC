@@ -4,6 +4,17 @@ Production-grade technical documentation for the DECA Sentrio E-Concern and Serv
 
 This document is intended for backend maintainers, frontend developers, onboarding engineers, QA testers, and future implementers extending the system after Phase 7.
 
+## Repository Layout Note
+
+The repository is now organized as a monorepo:
+
+```text
+backend/   Express.js + TypeScript + Prisma API
+frontend/  React + Vite frontend
+```
+
+Backend paths in this document such as `src/app.ts`, `prisma/schema.prisma`, and `uploads/` refer to files inside `backend/`. For example, `src/app.ts` means `backend/src/app.ts` from the repository root.
+
 ## Table of Contents
 
 - 1. System Overview
@@ -2408,4 +2419,3 @@ Office time-slot reservation with approval workflow.
 **Slot**
 
 Generated time interval based on office working hours and duration.
-

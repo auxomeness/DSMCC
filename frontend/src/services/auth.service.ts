@@ -13,7 +13,6 @@ export type RegisterTenantPayload = {
   email: string
   phoneNumber?: string
   password: string
-  building: string
   floor: string
   unitNumber: string
 }
