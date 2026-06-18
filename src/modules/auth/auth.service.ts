@@ -8,6 +8,7 @@ import type { LoginInput, RefreshTokenInput, RegisterTenantInput } from "./auth.
 
 // TEMP MVP STORAGE: replace with a DB-backed session store before scaling beyond single-process deployment.
 const refreshTokenStore = new Map<string, AuthUser>();
+const DEFAULT_TENANT_BUILDING = "DECA Sentrio";
 
 const toAuthUser = (user: {
   id: string;
@@ -59,7 +60,7 @@ export class AuthService {
         password,
         role: Role.TENANT,
         status: UserStatus.PENDING,
-        building: input.building,
+        building: DEFAULT_TENANT_BUILDING,
         floor: input.floor,
         unitNumber: input.unitNumber
       },

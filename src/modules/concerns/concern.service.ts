@@ -44,6 +44,8 @@ const concernInclude = {
   }
 };
 
+const DEFAULT_CONCERN_BUILDING = "DECA Sentrio";
+
 export class ConcernService {
   async createConcern(actor: WorkflowActor, input: CreateConcernInput) {
     if (actor.role !== Role.TENANT) {
@@ -80,7 +82,7 @@ export class ConcernService {
           description: input.description,
           officeId: input.officeId,
           tenantId: actor.id,
-          building: input.building,
+          building: DEFAULT_CONCERN_BUILDING,
           floor: input.floor,
           unitNumber: input.unitNumber,
           locationDescription: input.locationDescription,

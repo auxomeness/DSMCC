@@ -15,7 +15,6 @@ export const createConcernSchema = z.object({
     category: z.nativeEnum(ConcernCategory),
     description: z.string().trim().min(1, "Description is required."),
     officeId: z.string().uuid("Valid office id is required."),
-    building: z.string().trim().min(1, "Building is required."),
     floor: z.string().trim().min(1, "Floor is required."),
     unitNumber: z.string().trim().min(1, "Unit number is required."),
     locationDescription: z.string().trim().min(1, "Location description is required."),
