@@ -23,7 +23,7 @@ export function AuthShell({
 }: AuthShellProps) {
   return (
     <main className="min-h-screen bg-[#eeeeef]">
-      <section className="relative bg-[#d75728] px-6 pb-24 pt-6 text-white md:px-12">
+      <section className="relative bg-[#D96C3D] px-6 pb-24 pt-6 text-white md:px-12">
         <header className="mx-auto flex max-w-7xl items-center justify-between">
           <Link to="/" className="text-3xl font-bold tracking-tight">
             DECA Sentrio

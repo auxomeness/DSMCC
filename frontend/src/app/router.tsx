@@ -5,6 +5,7 @@ import { PublicLayout } from '@/layouts/PublicLayout'
 import { StaffLayout } from '@/layouts/StaffLayout'
 import { TenantLayout } from '@/layouts/TenantLayout'
 import { AdminDashboardPage } from '@/pages/admin/AdminDashboardPage'
+import { FeedbackPage } from '@/pages/public/FeedbackPage'
 import { HomePage } from '@/pages/public/HomePage'
 import { LoginPage } from '@/pages/public/LoginPage'
 import { RegisterPage } from '@/pages/public/RegisterPage'
@@ -23,6 +24,7 @@ export function AppRouter() {
           <Route path={routeConfig.login} element={<LoginPage />} />
           <Route path={routeConfig.register} element={<RegisterPage />} />
           <Route path={routeConfig.unauthorized} element={<UnauthorizedPage />} />
+          <Route path={routeConfig.feedback} element={<FeedbackPage />} />
           <Route path={routeConfig.home} element={<HomePage />} />
         </Route>
 

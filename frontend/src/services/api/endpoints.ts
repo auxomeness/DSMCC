@@ -8,6 +8,7 @@ export const endpoints = {
   },
   appointments: '/appointments',
   concerns: '/concerns',
+  feedbacks: '/feedbacks',
   offices: '/offices',
   staff: '/staff',
 } as const

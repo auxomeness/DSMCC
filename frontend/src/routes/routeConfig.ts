@@ -1,5 +1,6 @@
 export const routeConfig = {
   home: '/',
+  feedback: '/feedback',
   login: '/login',
   register: '/register',
   unauthorized: '/unauthorized',
