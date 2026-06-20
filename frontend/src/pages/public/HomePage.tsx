@@ -1,4 +1,6 @@
 import { UserRound } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { routeConfig } from '@/routes/routeConfig'
 
 import { MobileBottomNav } from '@/components/navigation/MobileBottomNav'
 import { PublicNavbar } from '@/components/navigation/PublicNavbar'
@@ -50,7 +52,9 @@ export function HomePage() {
             </div>
 
             <div className="min-h-[230px] rounded-lg bg-[#b0b0b0] p-4 text-sm font-semibold text-white">
+               <Link to={routeConfig.tenantDashboard}>
               Portal Preview
+               </Link>
             </div>
           </div>
         </section>

@@ -6,15 +6,15 @@ import { routeConfig } from '@/routes/routeConfig'
 
 export function PublicNavbar() {
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center justify-between bg-[#D96C3D] px-4 shadow-sm md:px-6">
-      <Link className="text-base font-bold tracking-wide text-white" to="/">
+    <header className="sticky top-0 z-30 flex h-14 items-center justify-between bg-[#d65b2b] px-4 shadow-sm md:px-6">
+      <Link className="text-base font-bold tracking-wide text-white" to={routeConfig.home}>
         DECA Sentrio
       </Link>
 
       <nav aria-label="Primary" className="hidden items-center gap-2 sm:flex">
         <Button
           asChild
-          className="h-9 w-10 rounded-lg bg-[#e8874a] p-0 text-white hover:bg-[#c75c10]"
+          className="h-9 w-10 rounded-lg bg-[#f19a54] p-0 text-white hover:bg-[#c64f23]"
           title="Home"
         >
           <Link to={routeConfig.home}>
@@ -24,7 +24,7 @@ export function PublicNavbar() {
         </Button>
         <Button
           asChild
-          className="h-9 w-10 rounded-lg bg-[#e8874a] p-0 text-white hover:bg-[#c75c10]"
+          className="h-9 w-10 rounded-lg bg-[#f19a54] p-0 text-white hover:bg-[#c64f23]"
           title="Feedback"
         >
           <Link to={routeConfig.feedback}>
@@ -37,15 +37,13 @@ export function PublicNavbar() {
       <div className="hidden items-center gap-2 sm:flex">
         <Button
           asChild
-          variant="outline"
-          className="h-8 rounded-md border-2 border-white bg-transparent px-4 text-xs font-bold tracking-wide text-white hover:bg-white hover:text-[#d9691e]"
+          className="h-9 rounded-full bg-[#f19a54] px-5 text-xs font-bold tracking-wide text-white hover:bg-[#eb934a]"
         >
           <Link to={routeConfig.login}>LOGIN</Link>
         </Button>
         <Button
           asChild
-          variant="outline"
-          className="h-8 rounded-md border-2 border-white bg-transparent px-4 text-xs font-bold tracking-wide text-white hover:bg-white hover:text-[#d9691e]"
+          className="h-9 rounded-full bg-white px-5 text-xs font-bold tracking-wide text-[#d65b2b] hover:bg-white/90"
         >
           <Link to={routeConfig.register}>REGISTER</Link>
         </Button>

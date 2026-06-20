@@ -5,6 +5,12 @@ export const routeConfig = {
   register: '/register',
   unauthorized: '/unauthorized',
   tenantDashboard: '/tenant',
+  tenantCreateConcern: '/tenant/concerns/new',
+  tenantCreateFeedback: '/tenant/feedback/new',
+  tenantScheduleAppointment: '/tenant/appointments/new',
+  tenantRequests: '/tenant/requests',
+  tenantFeedback: '/tenant/feedback',
+  tenantSettings: '/tenant/settings',
   staffDashboard: '/staff',
   adminDashboard: '/admin',
 } as const

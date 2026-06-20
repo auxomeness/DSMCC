@@ -1,5 +1,12 @@
-import axios from "axios"
+const disabledApiMessage =
+  'API integrations are disabled while the frontend is being built without a backend.'
 
-export const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
-})
+const disabledRequest = <T = unknown>(..._args: unknown[]): Promise<{ data: T }> =>
+  Promise.reject(new Error(disabledApiMessage))
+
+export const apiClient = {
+  delete: disabledRequest,
+  get: disabledRequest,
+  patch: disabledRequest,
+  post: disabledRequest,
+}

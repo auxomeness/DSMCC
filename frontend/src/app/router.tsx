@@ -11,9 +11,12 @@ import { LoginPage } from '@/pages/public/LoginPage'
 import { RegisterPage } from '@/pages/public/RegisterPage'
 import { UnauthorizedPage } from '@/pages/public/UnauthorizedPage'
 import { StaffDashboardPage } from '@/pages/staff/StaffDashboardPage'
+import { CreateConcernPage } from '@/pages/tenant/CreateConcernPage'
+import { ScheduleAppointmentPage } from '@/pages/tenant/ScheduleAppointmentPage'
 import { TenantDashboardPage } from '@/pages/tenant/TenantDashboardPage'
-import { ProtectedRoute } from '@/routes/ProtectedRoute'
-import { RoleRoute } from '@/routes/RoleRoute'
+import { TenantFeedbackPage } from '@/pages/tenant/TenantFeedbackPage'
+import { TenantSettingsPage } from '@/pages/tenant/TenantSettingsPage'
+import { ViewRequestsPage } from '@/pages/tenant/ViewRequestsPage'
 import { routeConfig } from '@/routes/routeConfig'
 
 export function AppRouter() {
@@ -28,24 +31,21 @@ export function AppRouter() {
           <Route path={routeConfig.home} element={<HomePage />} />
         </Route>
 
-        <Route element={<ProtectedRoute />}>
-          <Route element={<RoleRoute allowedRoles={['TENANT']} />}>
-            <Route element={<TenantLayout />}>
-              <Route path={routeConfig.tenantDashboard} element={<TenantDashboardPage />} />
-            </Route>
-          </Route>
+        <Route element={<TenantLayout />}>
+          <Route path={routeConfig.tenantDashboard} element={<TenantDashboardPage />} />
+          <Route path={routeConfig.tenantCreateConcern} element={<CreateConcernPage />} />
+          <Route path={routeConfig.tenantScheduleAppointment} element={<ScheduleAppointmentPage />} />
+          <Route path={routeConfig.tenantRequests} element={<ViewRequestsPage />} />
+          <Route path={routeConfig.tenantFeedback} element={<TenantFeedbackPage />} />
+          <Route path={routeConfig.tenantSettings} element={<TenantSettingsPage />} />
+        </Route>
 
-          <Route element={<RoleRoute allowedRoles={['STAFF']} />}>
-            <Route element={<StaffLayout />}>
-              <Route path={routeConfig.staffDashboard} element={<StaffDashboardPage />} />
-            </Route>
-          </Route>
+        <Route element={<StaffLayout />}>
+          <Route path={routeConfig.staffDashboard} element={<StaffDashboardPage />} />
+        </Route>
 
-          <Route element={<RoleRoute allowedRoles={['ADMIN']} />}>
-            <Route element={<AdminLayout />}>
-              <Route path={routeConfig.adminDashboard} element={<AdminDashboardPage />} />
-            </Route>
-          </Route>
+        <Route element={<AdminLayout />}>
+          <Route path={routeConfig.adminDashboard} element={<AdminDashboardPage />} />
         </Route>
 
         <Route path="*" element={<Navigate to={routeConfig.login} replace />} />
